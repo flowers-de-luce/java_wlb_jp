@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wlb.jp.dao.ZizhuchaxunDao">
+
+    <resultMap type="com.wlb.jp.entity.Zizhuchaxun" id="ZizhuchaxunMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="zy" column="zy" jdbcType="VARCHAR"/>
+        <result property="dj" column="dj" jdbcType="VARCHAR"/>
+        <result property="mc" column="mc" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="deleteFlag" column="delete_flag" jdbcType="OTHER"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+        <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ZizhuchaxunMap">
+        select
+          id, zy, dj, mc, phone, delete_flag, create_date, update_date
+        from zizhuchaxun
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ZizhuchaxunMap">
+        select
+          id, zy, dj, mc, phone, delete_flag, create_date, update_date
+        from zizhuchaxun
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="zy != null and zy != ''">
+                and zy = #{zy}
+            </if>
+            <if test="dj != null and dj != ''">
+                and dj = #{dj}
+            </if>
+            <if test="mc != null and mc != ''">
+                and mc = #{mc}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+            <if test="deleteFlag != null">
+                and delete_flag = #{deleteFlag}
+            </if>
+            <if test="createDate != null">
+                and create_date = #{createDate}
+            </if>
+            <if test="updateDate != null">
+                and update_date = #{updateDate}
+            </if>
+        </where>
+    </select>
+
+
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update zizhuchaxun
+        <set>
+            <if test="zy != null and zy != ''">
+                zy = #{zy},
+            </if>
+            <if test="dj != null and dj != ''">
+                dj = #{dj},
+            </if>
+            <if test="mc != null and mc != ''">
+                mc = #{mc},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from zizhuchaxun where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wlb.jp.dao.CitiesMapper">
+
+
+    <!--查询所有城市列表信息-->
+    <select id="queryAll" resultType="com.wlb.jp.entity.Cities">
+        select
+               id, cityid, city, provinceid
+        from
+            cities
+    </select>
+
+
+</mapper>

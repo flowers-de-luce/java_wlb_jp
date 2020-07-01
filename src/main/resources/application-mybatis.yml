@@ -1,0 +1,13 @@
+
+mybatis:
+  #扫描projo包
+  type-aliases-package: com.wlb.jp.entity
+  #mybatis配置路径
+  config-location: classpath:mybatis-config.xml
+  #扫描mapper文件
+  mapper-locations: classpath:mapper/*.xml
+mybatis-plus:
+  type-aliases-package: com.wlb.jp.entity
+  configuration:
+    #使用驼峰法映射属性,配置这个resultType可以映射
+    map-underscore-to-camel-case: true

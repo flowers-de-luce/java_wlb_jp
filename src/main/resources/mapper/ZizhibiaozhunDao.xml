@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wlb.jp.dao.ZizhibiaozhunDao">
+
+    <resultMap type="com.wlb.jp.entity.Zizhibiaozhun" id="ZizhibiaozhunMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="sanliandongId" column="sanliandong_id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="ms" column="ms" jdbcType="VARCHAR"/>
+        <result property="tp" column="tp" jdbcType="VARCHAR"/>
+        <result property="cc" column="cc" jdbcType="VARCHAR"/>
+        <result property="djl" column="djl" jdbcType="INTEGER"/>
+        <result property="nr" column="nr" jdbcType="VARCHAR"/>
+        <result property="gjz" column="gjz" jdbcType="VARCHAR"/>
+        <result property="zd" column="zd" jdbcType="INTEGER"/>
+        <result property="deleteFlag" column="delete_flag" jdbcType="INTEGER"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+        <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <insert id="insertZzbz" parameterType="com.wlb.jp.entity.Zizhibiaozhun">
+        INSERT INTO `zizhibiaozhun`( `sanliandong_id`, `name`, `ms`, `cc`, `djl`, `nr`, `gjz`)
+         VALUES (#{sanliandongId}, #{name}, #{ms}, #{cc}, #{djl}, #{nr}, #{gjz})
+
+    </insert>
+
+</mapper>

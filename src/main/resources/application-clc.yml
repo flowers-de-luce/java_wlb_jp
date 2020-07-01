@@ -1,0 +1,28 @@
+request:
+  type:
+    success: 200
+
+
+
+##图片上传路径
+file:
+  image:
+    hydt:
+      sc: images\\hydt\\
+      kc: images/hydt/
+    zzbl:
+      sc: images\\zzbl\\
+      kc: images/zzbl/
+    zzbz:
+      sc: images\\zzbz\\
+      kc: images/zzbz/
+    hzal:
+      sc: images\\hzal\\
+      kc: images/hzal/
+  # 资质推荐（精选资质）
+    zztj:
+      sc: images\\zztj\\
+      kc: images/zztj/
+web:
+  file:
+    path: D:/Nginx/ZS/API/kkb/

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wlb.jp.dao.HezuoanlieDao">
+
+    <resultMap type="com.wlb.jp.entity.Hezuoanlie" id="HezuoanlieMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="bt" column="bt" jdbcType="VARCHAR"/>
+        <result property="nr" column="nr" jdbcType="VARCHAR"/>
+        <result property="tp" column="tp" jdbcType="VARCHAR"/>
+        <result property="ms" column="ms" jdbcType="VARCHAR"/>
+        <result property="gjz" column="gjz" jdbcType="VARCHAR"/>
+        <result property="deleteFlag" column="delete_flag" jdbcType="INTEGER"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+        <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HezuoanlieMap">
+        select
+          id, bt, nr, tp, ms, gjz, delete_flag, create_date, update_date
+        from hezuoanlie
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="HezuoanlieMap">
+        select
+          id, bt, nr, tp, ms, gjz, delete_flag, create_date, update_date
+        from hezuoanlie
+        limit #{count}, #{page}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="HezuoanlieMap">
+        select
+          id, bt, nr, tp, ms, gjz, delete_flag, create_date, update_date
+        from hezuoanlie
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="bt != null and bt != ''">
+                and bt = #{bt}
+            </if>
+            <if test="nr != null and nr != ''">
+                and nr = #{nr}
+            </if>
+            <if test="tp != null and tp != ''">
+                and tp = #{tp}
+            </if>
+            <if test="ms != null and ms != ''">
+                and ms = #{ms}
+            </if>
+            <if test="gjz != null and gjz != ''">
+                and gjz = #{gjz}
+            </if>
+            <if test="deleteFlag != null">
+                and delete_flag = #{deleteFlag}
+            </if>
+            <if test="createDate != null">
+                and create_date = #{createDate}
+            </if>
+            <if test="updateDate != null">
+                and update_date = #{updateDate}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into hezuoanlie(bt, nr, tp, ms, gjz, delete_flag, create_date, update_date)
+        values (#{bt}, #{nr}, #{tp},#{ms},#{gjz}, #{deleteFlag}, #{createDate}, #{updateDate})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update hezuoanlie
+        <set>
+            <if test="bt != null and bt != ''">
+                bt = #{bt},
+            </if>
+            <if test="nr != null and nr != ''">
+                nr = #{nr},
+            </if>
+            <if test="tp != null and tp != ''">
+                tp = #{tp},
+            </if>
+            <if test="ms != null and ms != ''">
+                ms = #{ms},
+            </if>
+            <if test="gjz != null and gjz != ''">
+                gjz = #{gjz},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from hezuoanlie where id = #{id}
+    </delete>
+
+</mapper>

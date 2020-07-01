@@ -1,0 +1,15 @@
+#端口号
+server:
+  port: 5505
+  servlet:
+    context-path: /jp
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: clc,mybatis,thymeleaf,druid
+

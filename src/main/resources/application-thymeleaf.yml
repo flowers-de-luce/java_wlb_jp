@@ -1,0 +1,20 @@
+#spring:
+#  freemarker:
+#    template-loader-path: classpath:/templates/
+#    content-type: text/html
+#    suffix: .html
+#    charset: UTF-8
+#    cache: false
+#    check-template-location: true
+#    expose-request-attributes: true
+#    request-context-attribute: request
+
+spring:
+  thymeleaf:
+    mode: HTML
+    suffix: .html
+    check-template-location: true
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false #缓存

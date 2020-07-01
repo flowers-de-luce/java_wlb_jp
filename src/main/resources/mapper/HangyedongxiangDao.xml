@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wlb.jp.dao.HangyedongxiangDao">
+
+    <resultMap type="com.wlb.jp.entity.Hangyedongxiang" id="HangyedongxiangMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="bt" column="bt" jdbcType="VARCHAR"/>
+        <result property="ms" column="ms" jdbcType="VARCHAR"/>
+        <result property="gjz" column="gjz" jdbcType="VARCHAR"/>
+        <result property="tp" column="tp" jdbcType="VARCHAR"/>
+        <result property="nr" column="nr" jdbcType="VARCHAR"/>
+        <result property="zd" column="zd" jdbcType="INTEGER"/>
+        <result property="tj" column="tj" jdbcType="INTEGER"/>
+        <result property="deleteFlag" column="delete_flag" jdbcType="OTHER"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+        <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="HangyedongxiangMap">
+        select
+        id, type, bt, ms, gjz, tp, nr, zd, tj, delete_flag, create_date, update_date
+        from hangyedongxiang
+        <where>
+            <if test="hangyedongxiang.id != null">
+                and id = #{id}
+            </if>
+            <if test="hangyedongxiang.type != null and hangyedongxiang.type != ''">
+                and type = #{hangyedongxiang.type}
+            </if>
+            <if test="hangyedongxiang.bt != null and hangyedongxiang.bt != ''">
+                and bt = #{hangyedongxiang.bt}
+            </if>
+            <if test="hangyedongxiang.ms != null and hangyedongxiang.ms != ''">
+                and ms = #{hangyedongxiang.ms}
+            </if>
+            <if test="hangyedongxiang.gjz != null and hangyedongxiang.gjz != ''">
+                and gjz = #{hangyedongxiang.gjz}
+            </if>
+            <if test="hangyedongxiang.tp != null and hangyedongxiang.tp != ''">
+                and tp = #{hangyedongxiang.tp}
+            </if>
+            <if test="hangyedongxiang.nr != null and hangyedongxiang.nr != ''">
+                and nr = #{hangyedongxiang.nr}
+            </if>
+            <if test="hangyedongxiang.zd != null">
+                and zd = #{hangyedongxiang.zd}
+            </if>
+            <if test="hangyedongxiang.tj != null">
+                and tj = #{hangyedongxiang.tj}
+            </if>
+            <if test="hangyedongxiang.deleteFlag != null">
+                and delete_flag = #{hangyedongxiang.deleteFlag}
+            </if>
+            <if test="hangyedongxiang.createDate != null">
+                and create_date = #{hangyedongxiang.createDate}
+            </if>
+            <if test="hangyedongxiang.updateDate != null">
+                and update_date = #{hangyedongxiang.updateDate}
+            </if>
+        </where>
+        limit #{offset}, #{limit}
+    </select>
+</mapper>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wlb.jp.dao.ZizhuyyMapper">
+
+    <resultMap type="com.wlb.jp.entity.Zizhuyy" id="ZizhuyyMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="ds" column="ds" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="deleteFlag" column="delete_flag" jdbcType="OTHER"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+        <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--通过ID查询单条数据 -->
+    <select id="queryById" resultMap="ZizhuyyMap">
+        SELECT
+               id, ds, phone, delete_flag, create_date, update_date
+        FROM
+             zizhuyy
+        WHERE id = #{id}
+    </select>
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ZizhuyyMap">
+        SELECT
+               id, ds, phone, delete_flag, create_date, update_date
+        FROM
+             zizhuyy
+        LIMIT #{offset},#{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" parameterType="com.wlb.jp.entity.Zizhuyy"  resultMap="ZizhuyyMap">
+        SELECT
+            id, ds, phone, delete_flag, create_date, update_date
+        FROM
+            zizhuyy
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="ds != null and ds != ''">
+                and ds = #{ds}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+            <if test="deleteFlag != null">
+                and delete_flag = #{deleteFlag}
+            </if>
+            <if test="createDate != null">
+                and create_date = #{createDate}
+            </if>
+            <if test="updateDate != null">
+                and update_date = #{updateDate}
+            </if>
+        </where>
+    </select>
+    <!--插入自助查询数据-->
+    <insert id="insertOne">
+        INSERT INTO zizhuyy
+          ( ds, phone, delete_flag, create_date, update_date)
+        VALUES
+          (#{ds},#{phone},#{deleteFlag},#{createDate},#{updateDate})
+    </insert>
+    <!-- 修改数据-->
+    <update id="update">
+        update
+               zizhuyy
+         <set>
+             <if test="ds != null and ds != ''">
+                 and ds = #{ds}
+             </if>
+             <if test="phone != null and phone != ''">
+                 and phone = #{phone}
+             </if>
+             <if test="deleteFlag != null">
+                 and delete_flag = #{deleteFlag}
+             </if>
+             <if test="createDate != null">
+                 and create_date = #{createDate}
+             </if>
+             <if test="updateDate != null">
+                 and update_date = #{updateDate}
+             </if>
+         </set>
+    </update>
+
+    <!-- 通过主键删除数据-->
+    <delete id="deleteById">
+        delete from zizhuyy where id = #{id}
+    </delete>
+</mapper>
